@@ -1,10 +1,12 @@
 
-const express = require('express')
+import express from 'express'
+import { v4 as uuidv4 } from 'uuid'
+import cors from 'cors'
 
 const app = express()
 app.use(express.json())
+app.use(cors())
 
-const uuid = require('uuid')
 
 const orders = []
 
@@ -42,7 +44,7 @@ app.post('/orders', (request, response) => {
   const { order, clienteName, price } = request.body
   console.log(request.method)
   console.log(request.url)
-  const user = { id: uuid.v4(), order, clienteName, price, status: "Em preparação" }
+  const user = { id: uuidv4(), order, clienteName, price, status: "Em preparação" }
 
   orders.push(user)
 
